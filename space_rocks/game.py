@@ -7,6 +7,7 @@ class SpaceRocks:
         self._init_pygame()
         self.screen = pygame.display.set_mode((800, 600))
         self.background = load_sprite("space", False)
+        self.clock = pygame.time.Clock()
         self.spaceship = GameObject(
             (400, 300), load_sprite("spaceship"), (0, 0)
         )
@@ -19,6 +20,7 @@ class SpaceRocks:
             self._handle_input()
             self._process_game_logic()
             self._draw()
+
 
     def _init_pygame(self):
         pygame.init()
@@ -39,3 +41,4 @@ class SpaceRocks:
         self.spaceship.draw(self.screen)
         self.asteroid.draw(self.screen)
         pygame.display.flip()
+        self.clock.tick(60)
