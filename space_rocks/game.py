@@ -19,7 +19,7 @@ class SpaceRocks:
         #self.asteroids = [Asteroid(get_random_position(self.screen)) for _ in range(6)]
         self.spaceship = Spaceship((400, 300), self.bullets.append)
 
-        for _ in range(6):
+        for _ in range(2):
             while True:
                 position = get_random_position(self.screen)
                 if position.distance_to(self.spaceship.position) > self.MIN_ASTEROID_DISTANCE:

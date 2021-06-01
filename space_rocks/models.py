@@ -1,3 +1,4 @@
+import pygame.transform
 from pygame.math import Vector2
 from pygame.transform import rotozoom
 
@@ -32,7 +33,8 @@ class Spaceship(GameObject):
         self.create_bullet_callback = create_bullet_callback
         self.laser_sound = load_sound("laser")
         self.direction = Vector2(UP)
-        super().__init__(position, load_sprite("spaceship"), Vector2(0))
+        sprite = rotozoom(load_sprite("puppy"), 0, .3)
+        super().__init__(position, sprite, Vector2(0))
 
     def rotate(self, clockwise=True):
         sign = 1 if clockwise else -1
@@ -65,8 +67,8 @@ class Asteroid(GameObject):
             2: 0.5,
             1: 0.25,
         }
-        scale = size_to_scale[size]
-        sprite = rotozoom(load_sprite("asteroid"), 0, scale)
+        scale = size_to_scale[size] * .2
+        sprite = rotozoom(load_sprite("cat"), 0, scale)
 
         super().__init__(
             position, sprite, get_random_velocity(1, 3)
@@ -82,7 +84,7 @@ class Asteroid(GameObject):
 
 class Bullet(GameObject):
     def __init__(self, position, velocity):
-        super().__init__(position, load_sprite("bullet"), velocity)
+        super().__init__(position, load_sprite("pelletz"), velocity)
 
     def move(self, surface):
         self.position = self.position + self.velocity
